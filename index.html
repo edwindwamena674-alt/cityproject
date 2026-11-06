@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CITY MEGA CHURCH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#000000;
+      --bg-2:#05080a;
+      --panel:rgba(10,12,14,.96);
+      --panel-strong:#0b0f12;
+      --line:rgba(255,255,255,.08);
+      --green:#f5f7fb;
+      --green-strong:#dfe4eb;
+      --gold:#f5f7fb;
+      --gold-strong:#dfe4eb;
+      --blue:#dfe6f3;
+      --purple:#c7d1e5;
+      --red:#ff6d73;
+      --muted:#9aa6b2;
+      --text:#f4f7fb;
+      --shadow:0 28px 60px rgba(0,0,0,.52);
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      background: #000000;
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+      letter-spacing:-.02em;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,.05), transparent 24%),
+        radial-gradient(circle at 88% 22%, rgba(255,255,255,.03), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,0));
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .topbar{
+      position:relative;
+      z-index:2;
+      max-width:1480px;
+      margin:0 auto;
+      padding:18px 24px 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand-logo{
+      width:min(72vw, 980px);
+      max-height:260px;
+      object-fit:contain;
+      filter: drop-shadow(0 8px 24px rgba(255,255,255,.06));
+      transition:transform .2s ease;
+    }
+
+    .brand-logo:hover{
+      transform: scale(1.02);
+    }
+
+    .badge{
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02);
+      color:var(--text);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .container{
+      position:relative;
+      z-index:2;
+      max-width:1480px;
+      margin:0 auto;
+      padding:18px 24px 48px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(12,14,17,.98), rgba(6,8,10,.98));
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+      transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.12);
+      box-shadow:0 28px 80px rgba(0,0,0,.52);
+    }
+
+    .grid2{ display:grid; grid-template-columns:1.18fr .82fr; gap:18px; }
+    .grid3{ display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; }
+
+    .hero-card{ padding:26px; }
+    .brand-hero{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      margin-bottom:20px;
+      width:100%;
+      overflow:hidden;
+    }
+
+    .brand-image{
+      display:block;
+      width:min(100%, 1200px);
+      height:auto;
+      max-height:420px;
+      object-fit:contain;
+      filter: grayscale(1) contrast(1.12);
+      transform:translateX(-12px);
+    }
+
+    .hero-copy{
+      margin-top:8px;
+      display:inline-flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .eyebrow{
+      color:var(--muted);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .hero-copy strong{
+      font-size:clamp(1.15rem,2vw,1.8rem);
+      letter-spacing:-.05em;
+      line-height:1.1;
+      font-weight:800;
+      color:var(--text);
+    }
+
+    .muted{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+      margin-top:12px;
+    }
+
+    .hero-meta{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:18px;
+    }
+
+    .hero-meta span{
+      padding:8px 12px;
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      color:#eaf2ff;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .fixed-line{
+      margin-top:18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:16px 18px;
+      border-radius:18px;
+      background:linear-gradient(90deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--text);
+      box-shadow:0 18px 42px rgba(0,0,0,.16);
+      animation:floatCard 8s ease-in-out infinite;
+    }
+
+    .fixed-line small{
+      display:block;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      opacity:.8;
+    }
+    .fixed-line b{
+      display:block;
+      margin-top:4px;
+      font-size:28px;
+      letter-spacing:-.06em;
+    }
+    .fixed-line .mini{
+      font-size:12px; font-weight:800;
+      margin-top:4px;
+    }
+
+    .stats{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:12px;
+    }
+
+    .stat{
+      background:linear-gradient(180deg, rgba(13,15,18,.96), rgba(7,9,12,.96));
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px 14px;
+      min-height:120px;
+      transition:transform .2s ease, border-color .2s ease;
+    }
+
+    .stat:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.14);
+    }
+
+    .stat small{
+      display:block;
+      color:var(--muted);
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:800;
+    }
+
+    .stat b{
+      display:block;
+      margin-top:10px;
+      font-size:28px;
+      letter-spacing:-.06em;
+    }
+
+    .stat span{
+      display:block;
+      margin-top:4px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .demo-box{
+      margin-top:18px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+    }
+
+    .demo-box strong{
+      display:block;
+      margin-bottom:10px;
+      font-size:15px;
+    }
+
+    .btn{
+      width:100%;
+      border:0;
+      outline:none;
+      cursor:pointer;
+      border-radius:14px;
+      font-size:15px;
+      font-weight:800;
+      padding:15px 16px;
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+
+    .btn:hover{ transform:translateY(-1px); filter:saturate(1.08); }
+    .btn:active{ transform:translateY(0); }
+    .btn-green{
+      background:linear-gradient(90deg, #ffffff, #edf2fa);
+      color:#071018;
+      box-shadow:0 18px 32px rgba(255,255,255,.08);
+    }
+    .btn-dark{
+      background:linear-gradient(90deg,#f6faff,#dfe8ff);
+      color:#071018;
+      box-shadow:0 16px 30px rgba(255,255,255,.08);
+    }
+    .btn-ghost{
+      background:rgba(255,255,255,.02);
+      border:1px solid var(--line);
+      color:var(--text);
+    }
+
+    .auth-panel{ padding:22px; }
+    .tabs{
+      display:flex;
+      gap:8px;
+      padding:7px;
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+    }
+
+    .tab{
+      flex:1;
+      border:0;
+      border-radius:999px;
+      background:transparent;
+      color:var(--text);
+      font-weight:800;
+      padding:12px 14px;
+      cursor:pointer;
+      transition:all .18s ease;
+    }
+
+    .tab.active{
+      background:linear-gradient(90deg, #f5f7fb, #dfe8ff);
+      color:#08131d;
+      box-shadow:0 10px 20px rgba(255,255,255,.05);
+    }
+
+    label{
+      display:block;
+      margin-top:16px;
+      margin-bottom:8px;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    input, select{
+      width:100%;
+      background:#0b1320;
+      border:1px solid var(--line);
+      color:var(--text);
+      border-radius:14px;
+      padding:14px 15px;
+      font-size:15px;
+      outline:none;
+      transition:border-color .15s ease, box-shadow .15s ease;
+    }
+
+    input:focus, select:focus{
+      border-color:rgba(53,240,178,.8);
+      box-shadow:0 0 0 4px rgba(53,240,178,.08);
+    }
+
+    .hidden{ display:none !important; }
+
+    .page-header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:10px 0 8px;
+    }
+    .page-header h2{
+      font-size:clamp(2rem,4vw,3.2rem);
+      letter-spacing:-.07em;
+      line-height:1.05;
+      margin:0;
+    }
+
+    .pill{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:7px 10px; border-radius:999px;
+      font-size:11px; font-weight:900; letter-spacing:.12em; text-transform:uppercase;
+    }
+    .pill.success{
+      background:rgba(53,240,178,.12);
+      color:var(--green);
+      border:1px solid rgba(53,240,178,.18);
+    }
+    .pill.warning{
+      background:rgba(247,201,110,.12);
+      color:var(--gold);
+      border:1px solid rgba(247,201,110,.18);
+    }
+
+    .section{
+      margin-top:18px;
+      padding:22px;
+    }
+
+    .balance-card{
+      position:relative;
+      overflow:hidden;
+      padding:22px;
+      border-radius:24px;
+      background:linear-gradient(135deg, var(--gold), var(--green) 52%, var(--blue));
+      color:#07181f;
+      box-shadow:0 20px 46px rgba(91,188,255,.2);
+      animation:floatCard 8s ease-in-out infinite;
+    }
+
+    .balance-card::before{
+      content:"";
+      position:absolute;
+      right:-42px;
+      top:-50px;
+      width:180px; height:180px;
+      border-radius:50%;
+      background:rgba(255,255,255,.22);
+      filter:blur(8px);
+    }
+
+    .balance-card small{
+      display:block;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      opacity:.8;
+    }
+
+    .balance-card h3{
+      margin-top:8px;
+      font-size:clamp(2.2rem,4vw,3.5rem);
+      letter-spacing:-.07em;
+      line-height:1;
+    }
+
+    .balance-meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-top:16px;
+      font-weight:800;
+    }
+
+    .payment-form{
+      padding:22px;
+    }
+
+    .method{
+      display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;
+    }
+
+    .method button{
+      padding:14px 12px;
+      background:#0b1520;
+      border:2px solid var(--line);
+      color:var(--text);
+      border-radius:14px;
+      font-weight:800;
+      cursor:pointer;
+      transition:all .18s ease;
+    }
+
+    .method button:hover{
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.13);
+    }
+
+    .method button.active{
+      background:rgba(53,240,178,.08);
+      border-color:var(--green);
+      box-shadow:0 0 0 4px rgba(53,240,178,.06);
+    }
+
+    .method button.active-alt{
+      background:rgba(247,201,110,.08);
+      border-color:var(--gold);
+      box-shadow:0 0 0 4px rgba(247,201,110,.06);
+    }
+
+    .payment-summary{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#0a1220;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:13px;
+    }
+
+    .payment-summary b{ color:var(--text); }
+
+    .tx-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .tx-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      padding:14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.02);
+      border:1px solid var(--line);
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .tx-item:hover{
+      transform:translateX(2px);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+    }
+
+    .tx-main{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .avatar{
+      width:42px; height:42px;
+      border-radius:50%;
+      display:grid; place-items:center;
+      font-weight:900;
+      color:#071a1d;
+      background:linear-gradient(135deg, var(--green), var(--blue));
+      box-shadow:0 12px 24px rgba(91,188,255,.2);
+    }
+
+    .tx-copy{
+      min-width:0;
+    }
+
+    .tx-copy b{
+      display:block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:220px;
+    }
+
+    .tx-copy small{
+      display:block;
+      margin-top:3px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:240px;
+    }
+
+    .tx-right{
+      text-align:right;
+      flex-shrink:0;
+    }
+
+    .tx-right b{
+      display:block;
+      font-size:18px;
+      letter-spacing:-.04em;
+    }
+
+    .status{
+      display:inline-flex;
+      margin-top:6px;
+      padding:5px 8px;
+      border-radius:999px;
+      font-size:9px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .status.success{
+      background:rgba(53,240,178,.12);
+      color:var(--green);
+      border:1px solid rgba(53,240,178,.18);
+    }
+    .status.pending{
+      background:rgba(247,201,110,.12);
+      color:var(--gold);
+      border:1px solid rgba(247,201,110,.18);
+    }
+    .status.failed{
+      background:rgba(255,109,115,.12);
+      color:var(--red);
+      border:1px solid rgba(255,109,115,.18);
+    }
+
+    .empty{
+      text-align:center;
+      color:var(--muted);
+      padding:16px 10px;
+      font-size:14px;
+    }
+
+    .admin-layout{
+      display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px;
+    }
+
+    .receipt-modal{
+      position:fixed; inset:0;
+      display:grid; place-items:center;
+      background:rgba(3,7,12,.72);
+      z-index:100;
+      padding:18px;
+    }
+
+    .receipt-box{
+      width:min(420px,100%);
+      padding:22px;
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(17,27,39,.98), rgba(12,17,24,.96));
+      border:1px solid var(--line);
+      box-shadow:0 30px 80px rgba(0,0,0,.5);
+    }
+
+    .receipt-icon{
+      width:58px; height:58px; margin:0 auto 10px;
+      border-radius:50%;
+      display:grid; place-items:center;
+      font-size:28px;
+      background:linear-gradient(135deg, var(--green), var(--green-strong));
+      color:#071018;
+      box-shadow:0 18px 32px rgba(53,240,178,.24);
+    }
+
+    .receipt-box h3{
+      text-align:center;
+      font-size:28px;
+      letter-spacing:-.06em;
+      margin-bottom:4px;
+    }
+
+    .receipt-box .sub{
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:14px;
+    }
+
+    .receipt-body{
+      border:1px dashed rgba(255,255,255,.18);
+      background:#0b1320;
+      border-radius:16px;
+      padding:14px;
+      margin-top:12px;
+    }
+
+    .receipt-row{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      margin-top:10px;
+      font-size:14px;
+    }
+
+    .receipt-row span{
+      color:var(--muted);
+    }
+
+    .receipt-row b{
+      text-align:right;
+      max-width:60%;
+      overflow-wrap:anywhere;
+    }
+
+    .receipt-total{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:16px;
+      padding-top:14px;
+      border-top:1px dashed rgba(255,255,255,.18);
+      font-size:18px;
+      font-weight:800;
+    }
+
+    .mono{
+      font-family:'JetBrains Mono', monospace;
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:22px;
+      transform:translateX(-50%);
+      z-index:120;
+      background:#f5f8ff;
+      color:#07131d;
+      border-radius:999px;
+      padding:12px 16px;
+      font-size:13px;
+      font-weight:900;
+      box-shadow:0 12px 24px rgba(0,0,0,.25);
+    }
+
+    @keyframes floatCard{
+      0%, 100% { transform:translateY(0); }
+      50% { transform:translateY(-4px); }
+    }
+
+    @media (max-width:900px){
+      .grid2, .admin-layout { grid-template-columns:1fr; }
+      .grid3, .stats { grid-template-columns:1fr; }
+      .page-header{ display:block; }
+      .page-header h2{ margin-bottom:10px; }
+    }
+
+    @media (max-width:620px){
+      .topbar{ padding-top:16px; }
+      .badge{ display:none; }
+      .brand-logo{ height:48px; }
+      .card, .section, .auth-panel, .payment-form { padding:18px; }
+      .fixed-line{ padding:14px; }
+      .fixed-line b{ font-size:22px; }
+      .method{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">
+      <img src="./cmc.jpeg" alt="CITY MEGA CHURCH" class="brand-logo" />
+    </div>
+
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="badge">Secure giving • 0594531070</span>
+      <button id="logoutBtn" class="hidden btn btn-dark" onclick="logout()" style="width:auto;padding:10px 16px;border-radius:999px;">Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="authPage">
+      <div class="grid2">
+        <div class="card hero-card">
+          <div class="brand-hero">
+            <img src="./cmc.jpeg" alt="CITY MEGA CHURCH" class="brand-image" />
+          </div>
+          <div class="hero-copy">
+            <span class="eyebrow">City dark giving platform</span>
+            <strong>Secure, simple, and built for the church family.</strong>
+          </div>
+          <p class="muted">Secure giving for the church family. Admin tracks all payments with clarity, visibility, and confidence.</p>
+
+          <div class="hero-meta">
+            <span>Live tracking</span>
+            <span>Secure giving</span>
+            <span>Instant reports</span>
+          </div>
+
+          <div class="fixed-line">
+            <div>
+              <small>Fixed payment line</small>
+              <b>0594531070</b>
+              <div class="mini">MTN MoMo • Telecel Cash</div>
+            </div>
+            <span style="font-size:30px;">📱</span>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <small>Members</small>
+              <b id="statUsers">3</b>
+              <span>Active users</span>
+            </div>
+            <div class="stat">
+              <small>Transactions</small>
+              <b id="statTx">0</b>
+              <span>Recorded</span>
+            </div>
+            <div class="stat">
+              <small>Success</small>
+              <b>100%</b>
+              <span>Mock gateway</span>
+            </div>
+          </div>
+
+          <div class="demo-box">
+            <strong>Demo accounts</strong>
+            <button class="btn btn-ghost" style="margin-top:8px;" onclick="fillLogin('admin@city.com','1234')">👑 Admin — admin@city.com / 1234</button>
+            <button class="btn btn-ghost" style="margin-top:8px;" onclick="fillLogin('edwin@city.com','1234')">👤 Edwin — edwin@city.com / 1234</button>
+            <button class="btn btn-ghost" style="margin-top:8px;" onclick="fillLogin('cecelia@city.com','1234')">👤 Cecelia — cecelia@city.com / 1234</button>
+          </div>
+        </div>
+
+        <div class="card auth-panel">
+          <div class="tabs">
+            <button class="tab active" id="tabLogin" onclick="showAuth('login')">Login</button>
+            <button class="tab" id="tabReg" onclick="showAuth('register')">Create account</button>
+          </div>
+
+          <div id="loginForm">
+            <label>Email</label>
+            <input id="loginEmail" placeholder="admin@city.com" />
+
+            <label>Password</label>
+            <input id="loginPass" type="password" placeholder="1234" />
+
+            <button class="btn btn-green" onclick="doLogin()" style="margin-top:16px;">Login →</button>
+          </div>
+
+          <div id="regForm" class="hidden">
+            <label>Full Name</label>
+            <input id="regName" placeholder="James Mensah" />
+
+            <label>Email</label>
+            <input id="regEmail" placeholder="you@city.com" />
+
+            <label>Password</label>
+            <input id="regPass" type="password" placeholder="Create password" />
+
+            <label>Role</label>
+            <select id="regRole">
+              <option value="user">Basic Member</option>
+              <option value="admin">Admin</option>
+            </select>
+
+            <button class="btn btn-dark" onclick="doRegister()" style="margin-top:16px;">Create account →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="dashPage" class="hidden">
+      <div class="page-header">
+        <div>
+          <h2 id="welcomeName">Hello</h2>
+          <p class="muted" id="welcomeSub" style="margin-top:8px;"></p>
+        </div>
+        <span class="pill success" id="userRolePill">USER</span>
+      </div>
+
+      <div id="adminView" class="hidden">
+        <div class="card section">
+          <strong>👑 Admin control center — track only</strong>
+          <p class="muted" style="margin-top:8px;">Admin cannot pay. Fixed giving line: <b style="color:var(--text);">0594531070</b></p>
+
+          <div class="grid2" style="margin-top:18px;">
+            <div>
+              <label>Select member to track</label>
+              <select id="adminUserSelect" onchange="render()"></select>
+            </div>
+            <div>
+              <label>Filter by payment method</label>
+              <select id="adminMethodFilter" onchange="render()">
+                <option value="all">All methods</option>
+                <option value="MTN MoMo">MTN MoMo only</option>
+                <option value="Telecel Cash">Telecel Cash only</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="stats" style="margin-top:16px;">
+            <div class="stat">
+              <small>Total paid by <span id="adminSelectedName">Member</span></small>
+              <b id="adminTotalPaid" style="color:var(--green);">GH₵ 0.00</b>
+              <span>Successful only</span>
+            </div>
+            <div class="stat">
+              <small>Transactions</small>
+              <b id="adminTxCount">0</b>
+              <span>For selected member</span>
+            </div>
+            <div class="stat">
+              <small>Balance</small>
+              <b id="adminUserBalance">GH₵ 0</b>
+              <span>Current wallet</span>
+            </div>
+          </div>
+
+          <div class="stats" style="margin-top:12px;">
+            <div class="stat">
+              <small>Via MTN MoMo</small>
+              <b id="adminMTNTotal">GH₵ 0</b>
+              <span>Mobile money</span>
+            </div>
+            <div class="stat">
+              <small>Via Telecel Cash</small>
+              <b id="adminTelecelTotal">GH₵ 0</b>
+              <span>Cash wallet</span>
+            </div>
+            <div class="stat">
+              <small>To fixed line</small>
+              <b>0594531070</b>
+              <span>All payments</span>
+            </div>
+          </div>
+
+          <button class="btn btn-green" style="margin-top:16px;" onclick="requestTotal()">📊 Request total for this member →</button>
+          <p class="muted" id="adminTotalResult" style="text-align:center; margin-top:12px; font-weight:800; color:var(--text);"></p>
+        </div>
+
+        <div class="admin-layout">
+          <div class="card section">
+            <strong>👥 All members</strong>
+            <div id="adminUsers" class="tx-list"></div>
+          </div>
+
+          <div class="card section">
+            <strong>🧾 Transactions — selected member</strong>
+            <div id="adminTxList" class="tx-list"></div>
+            <p class="empty" id="adminEmpty">No transactions yet.</p>
+          </div>
+        </div>
+
+        <div class="card section" style="margin-top:18px;">
+          <strong>🌍 All transactions</strong>
+          <div id="allTxList" class="tx-list"></div>
+        </div>
+      </div>
+
+      <div id="userView" class="hidden">
+        <div class="grid2" style="margin-top:8px;">
+          <div>
+            <div class="balance-card">
+              <small>Total balance</small>
+              <h3 id="balText">GH₵ 0.00</h3>
+              <div class="balance-meta">
+                <span id="cardName">USER</span>
+                <span>•• 4521</span>
+              </div>
+            </div>
+
+            <div class="fixed-line" style="margin-top:14px;">
+              <div>
+                <small>You are paying to</small>
+                <b>0594531070</b>
+                <div class="mini">Church fixed line • MTN / Telecel</div>
+              </div>
+              <span style="font-size:30px;">📱</span>
+            </div>
+
+            <div class="stats" style="margin-top:14px;">
+              <div class="stat">
+                <small>Sent</small>
+                <b id="totalSent">GH₵ 0</b>
+                <span>Successful giving</span>
+              </div>
+              <div class="stat">
+                <small>Successful</small>
+                <b id="totalSuccess">0</b>
+                <span>Transactions</span>
+              </div>
+              <div class="stat">
+                <small>My total</small>
+                <b id="reportTotal">GH₵ 0</b>
+                <span>Giving summary</span>
+              </div>
+            </div>
+
+            <div class="card section" style="margin-top:14px; padding:18px;">
+              <strong>📊 My report</strong>
+              <p class="muted" id="reportNote" style="margin-top:10px;"></p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+                <span class="pill success" id="myMTN">MTN: GH₵ 0</span>
+                <span class="pill warning" id="myTelecel">Telecel: GH₵ 0</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card payment-form">
+              <strong>💸 Send payment — to fixed line</strong>
+              <p class="muted" style="margin-top:8px;">All giving goes to <b style="color:var(--text);">0594531070</b></p>
+
+              <label>Payment method</label>
+              <div class="method">
+                <button id="btnMTN" class="active" onclick="setMethod('MTN MoMo')">🟡 MTN MoMo</button>
+                <button id="btnTelecel" onclick="setMethod('Telecel Cash')">🔴 Telecel Cash</button>
+              </div>
+
+              <div class="grid2" style="margin-top:2px;">
+                <div>
+                  <label>Amount (GH₵)</label>
+                  <input id="payAmount" type="number" placeholder="100" />
+                </div>
+                <div>
+                  <label>Reason</label>
+                  <select id="payReason">
+                    <option>Offering</option>
+                    <option>Tithe</option>
+                    <option>Donation</option>
+                    <option>Transfer</option>
+                    <option>Fees</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <label>Note</label>
+              <input id="payNote" placeholder="e.g. Sunday offering" />
+
+              <div class="payment-summary">
+                Paying to: <b>0594531070</b> • via: <b id="payMethodLabel" style="color:var(--green)">MTN MoMo</b><br>
+                <span>In real life, this would be sent to the church’s mobile money line. Here it is simulated securely.</span>
+              </div>
+
+              <button class="btn btn-green" onclick="doPay()" style="margin-top:16px;">Pay GH₵ to 0594531070 →</button>
+            </div>
+
+            <div class="card section" style="margin-top:14px;">
+              <strong>🧾 My history</strong>
+              <div id="txList" class="tx-list"></div>
+              <p class="empty" id="emptyTx">No transactions yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="receiptModal" class="receipt-modal hidden">
+    <div class="receipt-box">
+      <div class="receipt-icon">✓</div>
+      <h3>Payment receipt</h3>
+      <div class="sub">CITY MEGA CHURCH • Secure giving</div>
+      <div class="receipt-body" id="receiptBody"></div>
+      <div style="display:flex;gap:10px;margin-top:16px;">
+        <button class="btn btn-green" onclick="closeReceipt()">Done</button>
+        <button class="btn btn-ghost" onclick="window.print()">🖨️ Print receipt</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script>
+    const FIXED_LINE = "0594531070";
+    const STORAGE_KEY = "citymega_current_user";
+
+    let currentUser = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+    let users = [];
+    let txs = [];
+    let selectedMethod = "MTN MoMo";
+
+    function toast(message) {
+      const t = document.getElementById("toast");
+      t.textContent = message;
+      t.classList.remove("hidden");
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => t.classList.add("hidden"), 2800);
+    }
+
+    function showAuth(mode) {
+      const login = document.getElementById("loginForm");
+      const reg = document.getElementById("regForm");
+      const tabLogin = document.getElementById("tabLogin");
+      const tabReg = document.getElementById("tabReg");
+
+      login.classList.toggle("hidden", mode !== "login");
+      reg.classList.toggle("hidden", mode !== "register");
+      tabLogin.classList.toggle("active", mode === "login");
+      tabReg.classList.toggle("active", mode === "register");
+    }
+
+    function fillLogin(email, pass) {
+      document.getElementById("loginEmail").value = email;
+      document.getElementById("loginPass").value = pass;
+      toast("Filled! Press login.");
+    }
+
+    async function loadUsersAndTx() {
+      const [usersRes, txRes] = await Promise.all([
+        fetch("/api/users"),
+        fetch("/api/transactions")
+      ]);
+
+      users = await usersRes.json();
+      txs = await txRes.json();
+
+      document.getElementById("statTx").textContent = txs.length;
+      document.getElementById("statUsers").textContent = users.length;
+    }
+
+    async function doLogin() {
+      const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+      const password = document.getElementById("loginPass").value;
+
+      if (!email || !password) {
+        toast("Fill in your email and password.");
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if (!data.success) {
+          toast(data.message || "Login failed.");
+          return;
+        }
+
+        currentUser = data.user;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(currentUser));
+        await loadUsersAndTx();
+        enterApp();
+        toast("✅ Welcome, " + currentUser.name);
+      } catch (error) {
+        toast("Could not connect to the server.");
+      }
+    }
+
+    async function doRegister() {
+      const name = document.getElementById("regName").value.trim();
+      const email = document.getElementById("regEmail").value.trim().toLowerCase();
+      const password = document.getElementById("regPass").value;
+      const role = document.getElementById("regRole").value;
+
+      if (!name || !email || !password) {
+        toast("Fill in all fields.");
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password, role })
+        });
+
+        const data = await res.json();
+
+        if (!data.success) {
+          toast(data.message || "Registration failed.");
+          return;
+        }
+
+        currentUser = data.user;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(currentUser));
+        await loadUsersAndTx();
+        enterApp();
+        toast("🎉 Account created successfully");
+      } catch (error) {
+        toast("Could not connect to the server.");
+      }
+    }
+
+    function enterApp() {
+      document.getElementById("authPage").classList.add("hidden");
+      document.getElementById("dashPage").classList.remove("hidden");
+      document.getElementById("logoutBtn").classList.remove("hidden");
+      render();
+    }
+
+    function logout() {
+      currentUser = null;
+      localStorage.removeItem(STORAGE_KEY);
+      document.getElementById("authPage").classList.remove("hidden");
+      document.getElementById("dashPage").classList.add("hidden");
+      document.getElementById("logoutBtn").classList.add("hidden");
+      showAuth("login");
+    }
+
+    function setMethod(method) {
+      selectedMethod = method;
+
+      document.getElementById("btnMTN").classList.toggle("active", method === "MTN MoMo");
+      document.getElementById("btnMTN").classList.remove("active-alt");
+
+      document.getElementById("btnTelecel").classList.toggle("active-alt", method === "Telecel Cash");
+      document.getElementById("btnTelecel").classList.remove("active");
+      document.getElementById("btnTelecel").classList.toggle("active", false);
+
+      document.getElementById("payMethodLabel").textContent = method;
+      document.getElementById("payMethodLabel").style.color = method === "MTN MoMo" ? "#35f0b2" : "#f7c96e";
+    }
+
+    async function doPay() {
+      if (!currentUser) return;
+
+      const amount = parseFloat(document.getElementById("payAmount").value);
+      const reason = document.getElementById("payReason").value;
+      const note = document.getElementById("payNote").value.trim() || reason;
+
+      if (!amount || amount <= 0) {
+        toast("Enter a valid amount.");
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/payments", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userId: currentUser.id,
+            amount,
+            reason,
+            method: selectedMethod,
+            note
+          })
+        });
+
+        const data = await res.json();
+
+        if (!data.success && data.message === "Insufficient funds.") {
+          toast("❌ Insufficient funds");
+          await loadUsersAndTx();
+          render();
+          return;
+        }
+
+        if (!data.success) {
+          toast(data.message || "Payment failed.");
+          return;
+        }
+
+        currentUser = data.user || currentUser;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(currentUser));
+
+        await loadUsersAndTx();
+        render();
+        showReceipt({
+          id: data.transaction.id,
+          from: data.transaction.from_name || currentUser.name,
+          to: "Church — " + FIXED_LINE,
+          amount: Number(data.transaction.amount),
+          reason: data.transaction.reason,
+          note: data.transaction.note || "",
+          status: data.transaction.status,
+          date: data.transaction.created_at,
+          method: data.transaction.method,
+          fixedLine: FIXED_LINE
+        });
+
+        toast("✅ Paid GH₵" + Number(data.transaction.amount).toFixed(2) + " via " + selectedMethod + " to " + FIXED_LINE);
+
+        document.getElementById("payAmount").value = "";
+        document.getElementById("payNote").value = "";
+      } catch (error) {
+        toast("Could not connect to the server.");
+      }
+    }
+
+    function requestTotal() {
+      const selectedEmail = document.getElementById("adminUserSelect").value;
+      const user = users.find(u => u.email === selectedEmail);
+
+      if (!user) return;
+
+      const total = txs
+        .filter(t => t.user_id === user.id && t.status === "Successful")
+        .reduce((sum, t) => sum + Number(t.amount), 0);
+
+      const mtn = txs
+        .filter(t => t.user_id === user.id && t.status === "Successful" && t.method === "MTN MoMo")
+        .reduce((sum, t) => sum + Number(t.amount), 0);
+
+      const telecel = txs
+        .filter(t => t.user_id === user.id && t.status === "Successful" && t.method === "Telecel Cash")
+        .reduce((sum, t) => sum + Number(t.amount), 0);
+
+      document.getElementById("adminTotalResult").textContent =
+        `✅ TOTAL for ${user.name} = GH₵ ${total.toLocaleString(undefined, { minimumFractionDigits: 2 })} — MTN: GH₵ ${mtn.toLocaleString()} | Telecel: GH₵ ${telecel.toLocaleString()}`;
+
+      toast("Total for " + user.name);
+    }
+
+    function render() {
+      if (!currentUser) return;
+
+      document.getElementById("welcomeName").textContent = "Hello, " + currentUser.name.split(" ")[0] + (currentUser.role === "admin" ? " 👑" : " 👋");
+      document.getElementById("welcomeSub").textContent = currentUser.role === "admin"
+        ? "Admin dashboard • track only — you cannot pay"
+        : "Welcome back • give to 0594531070";
+
+      document.getElementById("userRolePill").textContent = currentUser.role.toUpperCase();
+      document.getElementById("statTx").textContent = txs.length;
+      document.getElementById("statUsers").textContent = users.length;
+
+      const isAdmin = currentUser.role === "admin";
+      document.getElementById("adminView").classList.toggle("hidden", !isAdmin);
+      document.getElementById("userView").classList.toggle("hidden", isAdmin);
+
+      if (isAdmin) {
+        const select = document.getElementById("adminUserSelect");
+        const previous = select.value;
+        const members = users.filter(u => u.role !== "admin");
+
+        select.innerHTML = members.map(u => `
+          <option value="${u.email}">${u.name} — ${u.email}</option>
+        `).join("");
+
+        if (previous) select.value = previous;
+        const selected = users.find(u => u.email === select.value) || members[0];
+
+        if (!selected) return;
+
+        document.getElementById("adminSelectedName").textContent = selected.name;
+
+        const methodFilter = document.getElementById("adminMethodFilter").value;
+        let userTxs = txs.filter(t => t.user_id === selected.id);
+
+        if (methodFilter !== "all") {
+          userTxs = userTxs.filter(t => t.method === methodFilter);
+        }
+
+        const total = txs
+          .filter(t => t.user_id === selected.id && t.status === "Successful")
+          .reduce((sum, t) => sum + Number(t.amount), 0);
+
+        const mtnTotal = txs
+          .filter(t => t.user_id === selected.id && t.status === "Successful" && t.method === "MTN MoMo")
+          .reduce((sum, t) => sum + Number(t.amount), 0);
+
+        const telecelTotal = txs
+          .filter(t => t.user_id === selected.id && t.status === "Successful" && t.method === "Telecel Cash")
+          .reduce((sum, t) => sum + Number(t.amount), 0);
+
+        document.getElementById("adminTotalPaid").textContent = "GH₵ " + total.toLocaleString(undefined, { minimumFractionDigits: 2 });
+        document.getElementById("adminTxCount").textContent = userTxs.length;
+        document.getElementById("adminUserBalance").textContent = "GH₵ " + Number(selected.balance).toLocaleString();
+        document.getElementById("adminMTNTotal").textContent = "GH₵ " + mtnTotal.toLocaleString();
+        document.getElementById("adminTelecelTotal").textContent = "GH₵ " + telecelTotal.toLocaleString();
+
+        document.getElementById("adminUsers").innerHTML = users.map(u => `
+          <div class="tx-item" style="cursor:default;">
+            <div class="tx-main">
+              <div class="avatar">${u.name.charAt(0).toUpperCase()}</div>
+              <div class="tx-copy">
+                <b>${u.name}</b>
+                <small>${u.email} • ${u.role.toUpperCase()}</small>
+              </div>
+            </div>
+            <div class="tx-right">
+              <b>GH₵ ${Number(u.balance).toLocaleString()}</b>
+            </div>
+          </div>
+        `).join("");
+
+        const adminTxList = document.getElementById("adminTxList");
+        adminTxList.innerHTML = "";
+        document.getElementById("adminEmpty").classList.toggle("hidden", userTxs.length > 0);
+        userTxs.slice(0, 20).forEach(tx => adminTxList.appendChild(makeTxRow(tx)));
+
+        const allList = document.getElementById("allTxList");
+        allList.innerHTML = "";
+        txs.slice(0, 20).forEach(tx => allList.appendChild(makeTxRow(tx)));
+
+      } else {
+        document.getElementById("balText").textContent = "GH₵ " + Number(currentUser.balance).toLocaleString(undefined, { minimumFractionDigits: 2 });
+        document.getElementById("cardName").textContent = currentUser.name.toUpperCase();
+
+        const myTxs = txs.filter(t => t.user_id === currentUser.id);
+        const sentTotal = myTxs
+          .filter(t => t.status === "Successful")
+          .reduce((sum, t) => sum + Number(t.amount), 0);
+
+        const mtnTotal = myTxs
+          .filter(t => t.status === "Successful" && t.method === "MTN MoMo")
+          .reduce((sum, t) => sum + Number(t.amount), 0);
+
+        const telecelTotal = myTxs
+          .filter(t => t.status === "Successful" && t.method === "Telecel Cash")
+          .reduce((sum, t) => sum + Number(t.amount), 0);
+
+        document.getElementById("totalSent").textContent = "GH₵ " + sentTotal.toLocaleString();
+        document.getElementById("totalSuccess").textContent = myTxs.filter(t => t.status === "Successful").length;
+        document.getElementById("reportTotal").textContent = "GH₵ " + sentTotal.toLocaleString();
+        document.getElementById("reportNote").textContent = sentTotal > 0
+          ? `You have paid GH₵ ${sentTotal.toLocaleString()} to 0594531070 in total.`
+          : "Make your first contribution to 0594531070.";
+
+        document.getElementById("myMTN").textContent = "MTN: GH₵ " + mtnTotal.toLocaleString();
+        document.getElementById("myTelecel").textContent = "Telecel: GH₵ " + telecelTotal.toLocaleString();
+
+        const list = document.getElementById("txList");
+        list.innerHTML = "";
+        document.getElementById("emptyTx").classList.toggle("hidden", myTxs.length > 0);
+        myTxs.slice(0, 10).forEach(tx => list.appendChild(makeTxRow(tx)));
+      }
+    }
+
+    function makeTxRow(tx) {
+      const cls = tx.status === "Successful" ? "success" : tx.status === "Pending" ? "pending" : "failed";
+      const div = document.createElement("div");
+      div.className = "tx-item";
+      div.onclick = () => showReceipt(tx);
+
+      const icon = tx.method === "MTN MoMo" ? "🟡" : "🔴";
+      div.innerHTML = `
+        <div class="tx-main">
+          <div class="avatar">${icon}</div>
+          <div class="tx-copy">
+            <b>${tx.to || "Church — 0594531070"}</b>
+            <small>${tx.reason || "Giving"} • ${tx.method} • ${tx.date}</small>
+          </div>
+        </div>
+        <div class="tx-right">
+          <b>GH₵ ${Number(tx.amount).toLocaleString()}</b>
+          <span class="status ${cls}">${tx.status}</span>
+        </div>
+      `;
+
+      return div;
+    }
+
+    function showReceipt(tx) {
+      document.getElementById("receiptBody").innerHTML = `
+        <div class="receipt-row"><span>Transaction ID</span><b class="mono">${tx.id}</b></div>
+        <div class="receipt-row"><span>From</span><b>${tx.from}</b></div>
+        <div class="receipt-row"><span>To fixed line</span><b>${tx.fixedLine || FIXED_LINE}</b></div>
+        <div class="receipt-row"><span>Method</span><b>${tx.method || "MTN MoMo"}</b></div>
+        <div class="receipt-row"><span>Reason</span><b>${tx.reason}</b></div>
+        <div class="receipt-row"><span>Date</span><b>${tx.date}</b></div>
+        <div class="receipt-row"><span>Note</span><b>${tx.note}</b></div>
+        <div class="receipt-total">
+          <span>Amount</span>
+          <span style="color:var(--green)">GH₵ ${Number(tx.amount).toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+        </div>
+        <div class="receipt-row"><span>Status</span><b>${tx.status}</b></div>
+      `;
+      document.getElementById("receiptModal").classList.remove("hidden");
+    }
+
+    function closeReceipt() {
+      document.getElementById("receiptModal").classList.add("hidden");
+    }
+
+    async function init() {
+      if (currentUser) {
+        await loadUsersAndTx();
+        enterApp();
+      } else {
+        showAuth("login");
+      }
+
+      document.getElementById("loginPass").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") doLogin();
+      });
+
+      document.getElementById("regPass").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") doRegister();
+      });
+    }
+
+    setMethod("MTN MoMo");
+    init();
+  </script>
+</body>
+</html>

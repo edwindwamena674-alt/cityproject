@@ -1,0 +1,13 @@
+{
+  "name": "city-mega-church",
+  "version": "1.0.0",
+  "description": "City Mega Church giving app with backend and SQLite database",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "sqlite3": "^5.1.7"
+  }
+}
